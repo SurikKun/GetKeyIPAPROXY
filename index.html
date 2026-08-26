@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://127.0.0.1:5500/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOOLHACK | @SURIK219</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap');
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --primary: #00ff88;
+        --primary-dim: #00cc6a;
+        --secondary: #00d4ff;
+        --bg-dark: #0a0f0d;
+        --bg-card: rgba(10, 20, 15, 0.7);
+        --border: rgba(0, 255, 136, 0.15);
+        --glow: rgba(0, 255, 136, 0.3);
+    }
+
+    body {
+        background: var(--bg-dark);
+        color: #fff;
+        font-family: 'Rajdhani', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .bg-grid {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 200%;
+        height: 200%;
+        background-image: 
+            linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        animation: gridMove 20s linear infinite;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    @keyframes gridMove {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(-50px, -50px); }
+    }
+
+    .orb {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(80px);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .orb-1 {
+        width: 400px;
+        height: 400px;
+        background: rgba(0, 255, 136, 0.08);
+        top: -100px;
+        right: -100px;
+        animation: float 8s ease-in-out infinite;
+    }
+
+    .orb-2 {
+        width: 300px;
+        height: 300px;
+        background: rgba(0, 212, 255, 0.06);
+        bottom: -50px;
+        left: -50px;
+        animation: float 10s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(30px, -30px) scale(1.1); }
+    }
+
+    .panel {
+        width: min(420px, 90vw);
+        padding: 40px 30px 30px;
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        background: var(--bg-card);
+        backdrop-filter: blur(20px);
+        box-shadow: 
+            0 0 60px rgba(0, 0, 0, 0.6),
+            0 0 100px rgba(0, 255, 136, 0.05),
+            inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
+
+    .panel::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 20%;
+        right: 20%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        box-shadow: 0 0 20px var(--primary);
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 6px 16px;
+        border-radius: 20px;
+        background: rgba(0, 255, 136, 0.1);
+        border: 1px solid rgba(0, 255, 136, 0.2);
+        color: var(--primary);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.2); }
+        50% { box-shadow: 0 0 0 10px rgba(0, 255, 136, 0); }
+    }
+
+    .title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 26px;
+        font-weight: 900;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        background: linear-gradient(135deg, #fff 0%, var(--primary) 50%, var(--secondary) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+        position: relative;
+    }
+
+    .title::after {
+        content: 'SPEED RIKKAKA';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: linear-gradient(135deg, #fff 0%, var(--primary) 50%, var(--secondary) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: blur(20px);
+        opacity: 0.5;
+        z-index: -1;
+    }
+
+    .subtitle {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .subtitle::before,
+    .subtitle::after {
+        content: '';
+        display: block;
+        width: 30px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.4));
+    }
+
+    .subtitle::after {
+        background: linear-gradient(90deg, rgba(0, 255, 136, 0.4), transparent);
+    }
+
+    .subtitle span {
+        color: var(--primary);
+        font-weight: 700;
+    }
+
+    .status {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 24px;
+        padding: 10px;
+        border-radius: 12px;
+        background: rgba(0, 255, 136, 0.05);
+        border: 1px solid rgba(0, 255, 136, 0.1);
+    }
+
+    .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--primary);
+        box-shadow: 0 0 10px var(--primary);
+        animation: blink 1.5s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+    }
+
+    .status-text {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.7);
+        letter-spacing: 1px;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-bottom: 24px;
+    }
+
+    .btn {
+        position: relative;
+        width: 100%;
+        padding: 16px 24px;
+        border: none;
+        border-radius: 16px;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: pointer;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dim));
+        color: #000;
+        box-shadow: 
+            0 4px 20px rgba(0, 255, 136, 0.3),
+            0 0 0 1px rgba(0, 255, 136, 0.3);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 
+            0 8px 30px rgba(0, 255, 136, 0.4),
+            0 0 0 1px rgba(0, 255, 136, 0.5),
+            0 0 40px rgba(0, 255, 136, 0.2);
+    }
+
+    .btn-secondary {
+        background: transparent;
+        color: var(--primary);
+        border: 1px solid rgba(0, 255, 136, 0.3);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-secondary:hover {
+        background: rgba(0, 255, 136, 0.1);
+        transform: translateY(-3px);
+        box-shadow: 
+            0 8px 30px rgba(0, 255, 136, 0.15),
+            0 0 0 1px rgba(0, 255, 136, 0.4);
+    }
+
+    .btn:active {
+        transform: scale(0.97);
+    }
+
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .btn:hover::before {
+        left: 100%;
+    }
+
+    .links {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .link-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+    }
+
+    .link-btn:hover {
+        background: rgba(0, 255, 136, 0.08);
+        border-color: rgba(0, 255, 136, 0.2);
+        color: var(--primary);
+        transform: translateY(-2px);
+    }
+
+    .link-btn svg {
+        width: 16px;
+        height: 16px;
+        fill: currentColor;
+    }
+
+    .footer {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.25);
+        font-size: 11px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+
+    .footer strong {
+        color: rgba(0, 255, 136, 0.5);
+        font-weight: 700;
+    }
+
+    .corner {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--primary);
+        opacity: 0.3;
+    }
+
+    .corner-tl { top: 15px; left: 15px; border-right: 0; border-bottom: 0; }
+    .corner-tr { top: 15px; right: 15px; border-left: 0; border-bottom: 0; }
+    .corner-bl { bottom: 15px; left: 15px; border-right: 0; border-top: 0; }
+    .corner-br { bottom: 15px; right: 15px; border-left: 0; border-top: 0; }
+
+    .scanline {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            to bottom,
+            transparent 50%,
+            rgba(0, 0, 0, 0.03) 50%
+        );
+        background-size: 100% 4px;
+        pointer-events: none;
+        z-index: 10;
+    }
+
+    @media (max-width: 480px) {
+        .panel {
+            padding: 30px 20px 20px;
+        }
+        .title {
+            font-size: 20px;
+        }
+    }
+</style>
+</head>
+
+<body>
+    <div class="bg-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="scanline"></div>
+
+    <main class="panel">
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+
+        <div class="badge">Safe &amp; Working</div>
+        
+        <h1 class="title">TOOLHACK</h1>
+        <p class="subtitle">tele: <span>@Surik219</span></p>
+
+        <div class="status">
+            <div class="status-dot"></div>
+            <span class="status-text">SYSTEM READY — CONNECTED</span>
+        </div>
+
+        <div class="buttons">
+            <button class="btn btn-primary" onclick="window.open(&#39;https://anotepad.com/&#39;, &#39;_blank&#39;)">GETKEY</button>
+            <button class="btn btn-secondary" onclick="window.open(&#39;https://anotepad.com/&#39;, &#39;_blank&#39;)" <="" button="">Click ON Key</button>
+        </div>
+
+        <div class="links">
+            <a class="link-btn" href="https://t.me/modfileff" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.065-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.015-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.099.154.232.17.325.015.093.034.305.019.471z"></path></svg>
+                CHANNEL
+            </a>
+            <a class="link-btn" href="https://t.me/Surik219" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.065-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.015-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.099.154.232.17.325.015.093.034.305.019.471z"></path></svg>
+                CONTACT
+            </a>
+            
+        </div>
+
+        <div class="footer">Powered by <strong>SURIKK</strong></div>
+    </main>
+
+<script>
+    function fs1() {
+        h5gg.clearResults();
+        h5gg.searchNumber('4397530849764387586', 'I64', '0x100000000', '0x200000000');
+    }
+
+    function fs3() {
+        h5gg.editAll('4397530849764387586', 'I64');
+    }
+
+    function fs2() {
+        h5gg.editAll('4366458311853765201', 'I64');
+    }
+</script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+</body></html>
